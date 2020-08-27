@@ -15,7 +15,7 @@ const Toolbar = ({ history, pokemonsState, setSelectedLanguage, ...props }) => {
     return (
         <div className="toolbar-root">
             <ul className="toolbar-content">
-                <li onClick={() => history.push('/')} className="mx-2 cursor-pointer"><FontAwesomeIcon className={`mr-2`} icon={faHome} size="lg" /></li>
+                <li onClick={() => history.push('/')} className="ml-8 mr-2 cursor-pointer"><FontAwesomeIcon className={`mr-2`} icon={faHome} size="lg" /></li>
                 <li onClick={() => history.push('/pokedex')} className={`toolbar-button ${props.location.pathname.includes("pokedex") && "toolbar-button-active"}`}>
                     <FormattedMessage id="pokedex" />
                 </li>

@@ -8,7 +8,7 @@
 }
 
 .toolbar-content {
-    width: 100%;
+    width: calc(100% - 100px);
     height: 100%;
     display: flex;
     align-items: center;
@@ -40,6 +40,8 @@
     bottom: 0;
     display: flex;
     align-items: center;
+    max-width: 100px;
+    text-align: center;
 }
 
 .toolbar-language-selector-inline {
@@ -61,7 +63,7 @@
 }
 @media only screen and (max-width: 1024px){
     .toolbar-button {
-        width:30%;
+        width:40%;
     }
     .toolbar-content {
         justify-content: start;

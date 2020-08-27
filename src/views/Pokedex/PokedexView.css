@@ -36,3 +36,9 @@
     pointer-events: none;
     opacity: .5;
 }
+
+@media only screen and (max-width: 1024px){
+    .pokedexview-button {
+        width: 180px;
+    }
+}

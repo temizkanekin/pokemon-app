@@ -56,7 +56,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
 
     return (
         <div className="pokemon-detail-root">
-            <div className="h-full flex">
+            <div className="flex">
                 <div className="w-full flex">
                     <div className="pokemon-detail-image m-auto">
                         {<img className="pokemon-detail-logo" alt="Logo" src={logo} />}
@@ -67,7 +67,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                     <div className="flex mb-4 text-lg font-medium">
                         <FormattedMessage id="abilities" />
                     </div>
-                    <div className="flex mb-8 text-lg pokemon-detail-abilities">
+                    <div className="flex mb-4 text-lg pokemon-detail-abilities">
                         {
                             pokemonDetail && pokemonDetail.abilities.map(a =>
                                 <div key={a.ability.name} className="mr-2">
@@ -81,7 +81,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                     <div className="flex mb-4 text-lg font-medium">
                         <FormattedMessage id="type" />
                     </div>
-                    <div className="flex mb-8 flex-wrap">
+                    <div className="flex mb-4 flex-wrap">
                         {
                             pokemonDetail && pokemonDetail.types.map(t =>
                                 <div key={t.type.name} className={`pokemon-detail-type ${t.type.name}`}>
@@ -112,7 +112,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                         {isCapture ? <FormattedMessage id="capture.the.pokemon" /> : <FormattedMessage id="release.the.pokemon" />}</button>
                 </div>
             </div>
-            <div className="h-full">
+            <div className="overflow-auto">
                 <div className="pokemon-detail-about-title">
                     <FormattedMessage id="about.the.pokemon" />
                 </div>
@@ -131,7 +131,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
             </div>
             {openDialog && <div className="pokemon-detail-dialog-outer">
                 <dialog open={openDialog} className="pokemon-detail-dialog">
-                    <Lottie options={options} />
+                    <Lottie width='75%' options={options} />
                     <span className="font-bold mb-4"><FormattedMessage id="pokemon.captured" /></span>
                     <div className="flex justify-end pb-4">
                         <button onClick={() => setOpenDialog(false)} className="text-white pokemon-detail-dialog-button" type="button"><FormattedMessage id="confirm" /></button>

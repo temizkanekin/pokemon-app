@@ -1,7 +1,7 @@
 .pokemon-detail-root {
     width: 66%;
     margin: auto;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -17,13 +17,15 @@
 .pokemon-detail-info {
     font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .pokemon-detail-image {
     width: 350px;
     height: 350px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    background-color: #F2F2F2;
+    border-radius: 5px;
 }
 
 .pokemon-detail-capture-button {
@@ -62,6 +64,7 @@
     display: flex;
     margin-bottom: 1rem;
     align-items: center;
+    max-width: 50%;
 }
 
 .pokemon-detail-abilities {
@@ -75,12 +78,14 @@
 
 .pokemon-detail-dialog{
     max-width: 650px;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     bottom: 0;
     box-shadow:rgba(0,0,0,0.7) 0px 5px 15px;
     border: 1px solid lightgray;
     border-radius: 5px;
+    margin: auto;
+    background-color: #fff;
 }
 
 .pokemon-detail-dialog-button {
@@ -104,6 +109,7 @@
     top: 0;
     left: 0;
     background-color: #00000061;
+    display: flex;
 }
 
 .pokemon-detail-type {
@@ -129,6 +135,10 @@
 
     .pokemon-detail-type {
         width: 40%;
+    }
+
+    .pokemon-detail-user-buttons {
+        max-width: 100%;
     }
 }
 
