@@ -1,8 +1,49 @@
+## Live version on Netlify
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3fc38d73-965a-4a49-8f6f-ff6f7304f2cf/deploy-status)](https://app.netlify.com/sites/gallant-pike-59e84b/deploys)
+
+https://gallant-pike-59e84b.netlify.app/
+
+## Description about app
+
+- This pokemon application consists of three main views. These are:
+    - Pokedex View to list pokemons using the API with pagination(Infinite scrolling used in frontend). User can sort pokemons by their Id's or names. Additionally, there is a surprise me button added that links to random pokemon's detail page.
+    - Captured Pokemons View to list pokemons that are captured by user. User can sort pokemons by their Id's or names in here as well. Pokemons will be shown with a favorite button and favorited pokemons will be displayed with priority.
+    - Pokemon Detail View to display the details of the clicked pokemon(Type, Abilities and Stats of the pokemon are displayed). Both Pokedex and Captured Pokemons Views redirected to this page and pokemon details render here conditionally. User can capture pokemon and if it succeeds, the user is informed via a congrats dialog(User can release captured pokemons in here as well). Additionally, user can add pokemon to favorites if the pokemon is captured before.
+- App has language support(except the fields that are fetched from the API).
+- App has responsive UI.
+- Redux is used for managing the state throughout the application flow.
+- There is a snackbar component to inform the user that pokemon capture is failed.
+- No external component library is used.
+
+
+## Technologies/Libraries Used
+
+- React Router Dom : To wrap all views into router in App.js.
+- [Tailwind CSS](https://tailwindcss.com/) : Highly customizable, low-level CSS framework that gives you all of the building blocks you need to build bespoke designs without any annoying opinionated styles you have to fight to override.
+- [axios](https://github.com/axios/axios) : Promise based HTTP client for the browser and node.js
+- [react-redux](https://react-redux.js.org/): Official React bindings for Redux
+- [react-intl](https://www.npmjs.com/package/react-intl): To use localization in app
+- [react-lottie](https://github.com/chenqingspring/react-lottie) : Render After Effects animations on React
+- [font awesome icons](https://fontawesome.com/): Font Awesome, the web's most popular icon set and toolkit.
+
+## Feature TODO's
+
+- UI/UX improvements
+- Dockerizing the app
+- [react-virtualized](https://github.com/bvaughn/react-virtualized) to render pokemons efficiently
+- Dark Theme
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn install`
+
+Install the node dependencies before run the app.
 
 ### `yarn start`
 

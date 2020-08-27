@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import * as Actions from '../../actions'
 import Lottie from "react-lottie";
 import { FormattedMessage } from 'react-intl';
+import SnackBar from '../../components/SnackBar/SnackBar'
 import './PokemonDetailView.css'
 
 const pokemonLogoData = require("../../assets/4366-game-east-west.json");
@@ -27,6 +28,8 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
     const [pokemonDetail, setPokemonDetail] = React.useState(undefined)
     const [openDialog, setOpenDialog] = React.useState(false)
 
+    const ref = React.useRef();
+
     const pokemonName = match.params.name
     const isCapture = match.path.includes("pokedex")
     React.useEffect(() => {
@@ -41,8 +44,16 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
 
     const handleCapturePokemon = () => {
         if (isCapture) {
-            capturePokemon(pokemonDetail)
-            setOpenDialog(true)
+            if (pokemonsState.capturedPokemons.map(capturedPokemon => capturedPokemon.name).indexOf(pokemonDetail.name) === -1) {
+                capturePokemon(pokemonDetail)
+                setOpenDialog(true)
+            }
+            else {
+                ref.current.fireSnackBar({
+                    type: "fail",
+                    message: "snackbar.pokemon.already.captured"
+                })
+            }
         }
         else {
             releasePokemon(pokemonDetail)
@@ -55,90 +66,93 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
     }, [pokemonDetail, updatePokemonDetail])
 
     return (
-        <div className="pokemon-detail-root">
-            <div className="flex">
-                <div className="w-full flex">
-                    <div className="pokemon-detail-image m-auto">
-                        {<img className="pokemon-detail-logo" alt="Logo" src={logo} />}
+        <React.Fragment>
+            <SnackBar ref={ref} />
+            <div className="pokemon-detail-root">
+                <div className="flex my-8">
+                    <div className="w-full flex">
+                        <div className="pokemon-detail-image m-auto">
+                            {<img className="pokemon-detail-logo" alt="Logo" src={logo} />}
+                        </div>
+                    </div>
+                    <div className="w-full flex flex-col ml-4 mt-4">
+                        <div className="pokemon-detail-info">{pokemonName}</div>
+                        <div className="flex mb-4 text-lg font-medium">
+                            <FormattedMessage id="abilities" />
+                        </div>
+                        <div className="flex mb-4 text-lg pokemon-detail-abilities">
+                            {
+                                pokemonDetail && pokemonDetail.abilities.map(a =>
+                                    <div key={a.ability.name} className="mr-2">
+                                        {
+                                            a.ability.name
+                                        }
+                                    </div>
+                                )
+                            }
+                        </div>
+                        <div className="flex mb-4 text-lg font-medium">
+                            <FormattedMessage id="type" />
+                        </div>
+                        <div className="flex mb-4 flex-wrap">
+                            {
+                                pokemonDetail && pokemonDetail.types.map(t =>
+                                    <div key={t.type.name} className={`pokemon-detail-type ${t.type.name}`}>
+                                        {
+                                            t.type.name
+                                        }
+                                    </div>
+                                )
+                            }
+                        </div>
+                        {
+                            !isCapture && pokemonDetail && <button
+                                type="button"
+                                onClick={() => setPokemonDetail({ ...pokemonDetail, pinned: !pokemonDetail.pinned })}
+                                className="pokemon-detail-user-buttons"
+                            >
+                                {
+                                    pokemonDetail.pinned ?
+                                        <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
+                                        <FontAwesomeIcon className={`mr-2`} icon={faHeart} size="lg" />
+                                }
+                                {
+                                    pokemonDetail.pinned ? <FormattedMessage id="pokemon.added.to.favorites" /> : <FormattedMessage id="pokemon.add.to.favorites" />
+                                }
+                            </button>
+                        }
+                        <button onClick={handleCapturePokemon} className={`mb-4 pokemon-detail-capture-button ${!isCapture ? "pokemon-detail-release-button" : ""}`}>
+                            {isCapture ? <FormattedMessage id="capture.the.pokemon" /> : <FormattedMessage id="release.the.pokemon" />}</button>
                     </div>
                 </div>
-                <div className="w-full flex flex-col ml-4 mt-4">
-                    <div className="pokemon-detail-info">{pokemonName}</div>
-                    <div className="flex mb-4 text-lg font-medium">
-                        <FormattedMessage id="abilities" />
+                <div className="overflow-auto">
+                    <div className="pokemon-detail-about-title">
+                        <FormattedMessage id="about.the.pokemon" />
                     </div>
-                    <div className="flex mb-4 text-lg pokemon-detail-abilities">
+                    <div className="w-full mt-4 h-full">
                         {
-                            pokemonDetail && pokemonDetail.abilities.map(a =>
-                                <div key={a.ability.name} className="mr-2">
-                                    {
-                                        a.ability.name
-                                    }
+                            pokemonDetail && pokemonDetail.stats.map(s => {
+                                return <div key={s.stat.name} className="w-full mb-2 flex justify-between items-center">
+                                    <span className="w-1/5">{s.stat.name}</span>
+                                    <div className="w-4/5 flex">
+                                        <span className="bg-gray-400 flex justify-end pr-1" style={{ width: `${s.base_stat}%` }}>%{s.base_stat}</span>
+                                    </div>
                                 </div>
-                            )
+                            })
                         }
                     </div>
-                    <div className="flex mb-4 text-lg font-medium">
-                        <FormattedMessage id="type" />
-                    </div>
-                    <div className="flex mb-4 flex-wrap">
-                        {
-                            pokemonDetail && pokemonDetail.types.map(t =>
-                                <div key={t.type.name} className={`pokemon-detail-type ${t.type.name}`}>
-                                    {
-                                        t.type.name
-                                    }
-                                </div>
-                            )
-                        }
-                    </div>
-                    {
-                        !isCapture && pokemonDetail && <button
-                            type="button"
-                            onClick={() => setPokemonDetail({ ...pokemonDetail, pinned: !pokemonDetail.pinned })}
-                            className="pokemon-detail-user-buttons"
-                        >
-                            {
-                                pokemonDetail.pinned ?
-                                    <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
-                                    <FontAwesomeIcon className={`mr-2`} icon={faHeart} size="lg" />
-                            }
-                            {
-                                pokemonDetail.pinned ? <FormattedMessage id="pokemon.added.to.favorites" /> : <FormattedMessage id="pokemon.add.to.favorites" />
-                            }
-                        </button>
-                    }
-                    <button onClick={handleCapturePokemon} className={`mb-4 pokemon-detail-capture-button ${!isCapture ? "pokemon-detail-release-button" : ""}`}>
-                        {isCapture ? <FormattedMessage id="capture.the.pokemon" /> : <FormattedMessage id="release.the.pokemon" />}</button>
                 </div>
+                {openDialog && <div className="pokemon-detail-dialog-outer">
+                    <dialog open={openDialog} className="pokemon-detail-dialog">
+                        <Lottie width='75%' options={options} />
+                        <span className="font-bold m-4"><FormattedMessage id="pokemon.captured" /></span>
+                        <div className="flex justify-end pb-4">
+                            <button onClick={() => setOpenDialog(false)} className="text-white mr-2 pokemon-detail-dialog-button" type="button"><FormattedMessage id="confirm" /></button>
+                        </div>
+                    </dialog>
+                </div>}
             </div>
-            <div className="overflow-auto">
-                <div className="pokemon-detail-about-title">
-                    <FormattedMessage id="about.the.pokemon" />
-                </div>
-                <div className="w-full mt-4 h-full">
-                    {
-                        pokemonDetail && pokemonDetail.stats.map(s => {
-                            return <div className="w-full mb-2 flex justify-between items-center">
-                                <span className="w-1/5">{s.stat.name}</span>
-                                <div className="w-4/5 flex">
-                                    <span className="bg-gray-400 flex justify-end" style={{ width: `${s.base_stat}%` }}>%{s.base_stat}</span>
-                                </div>
-                            </div>
-                        })
-                    }
-                </div>
-            </div>
-            {openDialog && <div className="pokemon-detail-dialog-outer">
-                <dialog open={openDialog} className="pokemon-detail-dialog">
-                    <Lottie width='75%' options={options} />
-                    <span className="font-bold mb-4"><FormattedMessage id="pokemon.captured" /></span>
-                    <div className="flex justify-end pb-4">
-                        <button onClick={() => setOpenDialog(false)} className="text-white pokemon-detail-dialog-button" type="button"><FormattedMessage id="confirm" /></button>
-                    </div>
-                </dialog>
-            </div>}
-        </div>
+        </React.Fragment>
     )
 }
 

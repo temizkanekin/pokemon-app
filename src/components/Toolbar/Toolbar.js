@@ -25,9 +25,6 @@ const Toolbar = ({ history, pokemonsState, setSelectedLanguage, ...props }) => {
             </ul>
             <div className="toolbar-language-selector">
                 <div className="toolbar-language-selector-inline">
-                    <label className="pr-1 toolbar-label" htmlFor="languages">
-                        <FormattedMessage id="toolbar.language" />
-                    </label>
                     <select
                         className="toolbar-select"
                         value={selectedLanguage}

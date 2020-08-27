@@ -1,7 +1,6 @@
 .pokemon-detail-root {
     width: 66%;
     margin: auto;
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
     padding: 1rem;

@@ -63,8 +63,8 @@ const CapturedPokemonsView = ({ history, pokemonsState, intl }) => {
             <div className="w-full flex justify-evenly p-4">
                 <div className="capturedpokemonsview-button flex items-center justify-center">
                     <FontAwesomeIcon className={`mr-2`} icon={faSort} />
-                    <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="capturedpokemonsview-select" id="sortBy">
-                        <option value="" disabled selected>{intl.formatMessage(localizations.sortResultsBy)}</option>
+                    <select disabled={pokemonsState.capturedPokemons.length === 0} value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="capturedpokemonsview-select" id="sortBy">
+                        <option value="" disabled>{intl.formatMessage(localizations.sortResultsBy)}</option>
                         <option value="default"> {intl.formatMessage(localizations.default)} </option>
                         <option value="name+"> {intl.formatMessage(localizations.sortByNameAscending)}</option>
                         <option value="name-"> {intl.formatMessage(localizations.sortByNameDescending)}</option>

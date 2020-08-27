@@ -27,6 +27,11 @@
     width: 100%;
 }
 
+.capturedpokemonsview-select:disabled {
+    pointer-events: none;
+    opacity: .5;
+}
+
 .captured-content {
     display: flex;
     flex-wrap: wrap;

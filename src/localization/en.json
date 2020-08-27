@@ -13,12 +13,13 @@
     "abilities" : "Abilities",
     "type" : "Type",
     "about.the.pokemon": "About The Pokemon",
-    "pokemon.captured" : "Congratz! Pokemon Captured Successfully!",
+    "pokemon.captured" : "Congrats! Pokemon Captured Successfully!",
     "confirm" : "Confirm",
     "surprise.me" : "Surprise Me",
     "capture.the.pokemon" : "Capture The Pokemon",
     "release.the.pokemon" : "Release The Pokemon",
     "pokemon.add.to.favorites" : "Add Pokemon To Favorites",
     "pokemon.added.to.favorites" : "Pokemon Added To Favorites",
-    "pokemon.removed.from.favorites" : "Pokemon Removed From Favorites"
+    "pokemon.removed.from.favorites" : "Pokemon Removed From Favorites",
+    "snackbar.pokemon.already.captured" : "Pokemon Already Captured"
 }

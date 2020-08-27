@@ -100,7 +100,7 @@ const PokedexView = ({ history, intl }) => {
                 <div className="pokedexview-button flex items-center justify-center">
                     <FontAwesomeIcon className={`mr-2`} icon={faSort} />
                     <select disabled={!pokemons} value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="pokedexview-select" id="sortBy">
-                        <option value="" disabled selected>{intl.formatMessage(localizations.sortResultsBy)}</option>
+                        <option value="" disabled>{intl.formatMessage(localizations.sortResultsBy)}</option>
                         <option value="default"> {intl.formatMessage(localizations.default)} </option>
                         <option value="name+"> {intl.formatMessage(localizations.sortByNameAscending)}</option>
                         <option value="name-"> {intl.formatMessage(localizations.sortByNameDescending)}</option>
