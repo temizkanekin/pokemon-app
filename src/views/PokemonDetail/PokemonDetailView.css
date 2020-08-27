@@ -1,0 +1,207 @@
+.pokemon-detail-root {
+    width: 66%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.pokemon-detail-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pokemon-detail-info {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.pokemon-detail-image {
+    width: 350px;
+    height: 350px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.pokemon-detail-capture-button {
+    background: #f4511e;
+    border: none;
+    font-size: 16px;
+    width: 180px;
+    height: 50px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    color: white;
+}
+
+.pokemon-detail-release-button {
+    background: #E3350D;
+}
+
+.pokemon-detail-quantity {
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.pokemon-detail-about-title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.pokemon-detail-user-buttons {
+    color: #646464;
+    font-size: 16px;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.pokemon-detail-abilities {
+    width: 100%;
+    height: 50px;
+    flex-direction: column;
+    overflow: auto;
+    flex-wrap: wrap;
+    color: #0148c2;
+}
+
+.pokemon-detail-dialog{
+    max-width: 650px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    box-shadow:rgba(0,0,0,0.7) 0px 5px 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.pokemon-detail-dialog-button {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: .5rem;
+    background-color: #9bcc50;
+    font-weight: bold;
+    transition: all 0.3s linear;
+}
+
+.pokemon-detail-dialog-button:hover {
+    box-shadow:rgba(0,0,0,0.7) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+.pokemon-detail-dialog-outer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00000061;
+}
+
+.pokemon-detail-type {
+    width: 20%;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+}
+
+@media only screen and (max-width: 1024px){
+    .pokemon-detail-root {
+        width:100%;
+    }
+    .pokemon-detail-image {
+        width: 150px;
+        height: 200px;
+    }
+
+    .pokemon-detail-capture-button {
+        width: 150px;
+    }
+
+    .pokemon-detail-type {
+        width: 40%;
+    }
+}
+
+.grass {
+    background-color: #9bcc50;
+}
+
+.poison {
+    background-color: #b97fc9;
+    color: white;
+}
+
+.fire {
+    background-color: #fd7d24;
+    color: white;
+}
+
+.water {
+    background-color: #4592c4;
+    color: white;
+}
+
+.flying {
+    background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+    background-color: #3dc7ef;
+}
+
+.bug {
+    background-color: #729f3f;
+}
+
+.normal {
+    background-color: #a4acaf;
+}
+
+.ground {
+    background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+    background-color: #f7de3f;
+}
+
+.electric {
+    background-color: #eed535;
+}
+
+.fairy {
+    background-color: #fdb9e9;
+}
+
+.fighting {
+    background-color: #d56723;
+}
+
+.psychic {
+    background-color: #f366b9;
+}
+
+.rock {
+    background-color: #a38c21;
+}
+
+.steel {
+    background-color: #9eb7b8;
+}
+
+.ice {
+    background-color: #51c4e7;
+}
+
+.ghost {
+    background-color: #7b62a3;
+}
+
+.dragon {
+    background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+    background-color: #53a4cf;
+}

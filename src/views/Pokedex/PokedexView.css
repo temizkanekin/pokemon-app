@@ -1,0 +1,38 @@
+.pokedexview-root {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.pokedexview-button {
+    background: #30a7d7;
+    border: none;
+    font-size: 16px;
+    width: 250px;
+    height: 50px;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    color: white;
+    padding: 1rem;
+}
+
+.pokedexview-button:disabled {
+    pointer-events: none;
+    opacity: .5;
+}
+
+.pokedexview-select {
+    background: #30a7d7;
+    text-overflow: ellipsis;
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+}
+
+.pokedexview-select:disabled {
+    pointer-events: none;
+    opacity: .5;
+}
