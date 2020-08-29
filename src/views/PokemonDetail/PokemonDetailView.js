@@ -75,7 +75,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                             {<img className="pokemon-detail-logo" alt="Logo" src={logo} />}
                         </div>
                     </div>
-                    <div className="w-full flex flex-col ml-4 mt-4">
+                    <div className="w-full flex flex-col ml-4 mt-4 overflow-auto">
                         <div className="pokemon-detail-info">{pokemonName}</div>
                         <div className="flex mb-4 text-lg font-medium">
                             <FormattedMessage id="abilities" />
@@ -106,20 +106,23 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                             }
                         </div>
                         {
-                            !isCapture && pokemonDetail && <button
-                                type="button"
-                                onClick={() => setPokemonDetail({ ...pokemonDetail, pinned: !pokemonDetail.pinned })}
-                                className="pokemon-detail-user-buttons"
-                            >
-                                {
-                                    pokemonDetail.pinned ?
-                                        <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
-                                        <FontAwesomeIcon className={`mr-2`} icon={faHeart} size="lg" />
-                                }
-                                {
-                                    pokemonDetail.pinned ? <FormattedMessage id="pokemon.added.to.favorites" /> : <FormattedMessage id="pokemon.add.to.favorites" />
-                                }
-                            </button>
+                            !isCapture && pokemonDetail && 
+                            <div className="flex mb-4 justify-start">
+                                <button
+                                    type="button"
+                                    onClick={() => setPokemonDetail({ ...pokemonDetail, pinned: !pokemonDetail.pinned })}
+                                    className="pokemon-detail-user-buttons"
+                                >
+                                    {
+                                        pokemonDetail.pinned ?
+                                            <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
+                                            <FontAwesomeIcon className={`mr-2`} icon={faHeart} size="lg" />
+                                    }
+                                    {
+                                        pokemonDetail.pinned ? <FormattedMessage id="pokemon.added.to.favorites" /> : <FormattedMessage id="pokemon.add.to.favorites" />
+                                    }
+                                </button>
+                            </div>
                         }
                         <button onClick={handleCapturePokemon} className={`mb-4 pokemon-detail-capture-button ${!isCapture ? "pokemon-detail-release-button" : ""}`}>
                             {isCapture ? <FormattedMessage id="capture.the.pokemon" /> : <FormattedMessage id="release.the.pokemon" />}</button>
@@ -144,7 +147,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
                 </div>
                 {openDialog && <div className="pokemon-detail-dialog-outer">
                     <dialog open={openDialog} className="pokemon-detail-dialog">
-                        <Lottie width='75%' options={options} />
+                        <Lottie width='75%' height='75%' options={options} />
                         <span className="font-bold m-4"><FormattedMessage id="pokemon.captured" /></span>
                         <div className="flex justify-end pb-4">
                             <button onClick={() => setOpenDialog(false)} className="text-white mr-2 pokemon-detail-dialog-button" type="button"><FormattedMessage id="confirm" /></button>

@@ -74,7 +74,8 @@ const PokedexView = ({ history, intl }) => {
 
     const handleSurpriseButtonClick = () => {
         let randomPokemonIndex = Math.floor(Math.random() * pokemons.length);
-        history.push(`/pokedex/${pokemons[randomPokemonIndex].name}/${handleIndex(randomPokemonIndex)}`)
+        let pokemonId = pokemons[randomPokemonIndex].url.match(/\d+/g)[1]
+        history.push(`/pokedex/${pokemons[randomPokemonIndex].name}/${handleIndex(pokemonId)}`)
     }
 
     const handleSort = (array) => {
