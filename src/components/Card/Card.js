@@ -15,7 +15,7 @@ const Card = ({ ...props }) => {
             <div className="card-body">
                 <div className="card-title">
                     {title}
-                    {pinned !== undefined ? pinned ? <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
+                    {typeof pinned !== "undefined" ? pinned ? <FontAwesomeIcon className={`mr-2`} icon={faHeartSolid} size="lg" /> :
                         <FontAwesomeIcon className={`mr-2`} icon={faHeart} size="lg" />
                         : null
                     }
@@ -24,7 +24,7 @@ const Card = ({ ...props }) => {
                     {subtitle}
                 </div>
                 {
-                    description &&
+                    !!description &&
                     <div className="card-description">
                         {description}
                     </div>

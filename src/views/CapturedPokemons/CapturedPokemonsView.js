@@ -6,28 +6,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-
-const localizations = defineMessages({
-    sortResultsBy: {
-        id: "sort.results.by",
-    },
-    default: {
-        id: "default",
-    },
-    sortByNameAscending: {
-        id: "sort.by.name.ascending",
-    },
-    sortByNameDescending: {
-        id: "sort.by.name.descending",
-    },
-    sortByIdAscending: {
-        id: "sort.by.id.ascending",
-    },
-    sortByIdDescending: {
-        id: "sort.by.id.descending",
-    },
-});
+import { FormattedMessage, injectIntl } from 'react-intl';
+import { localizations } from '../../localization/DefineMessages'
 
 const handleIndex = (number) => {
     if (number < 10)

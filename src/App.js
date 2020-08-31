@@ -15,7 +15,9 @@ const messages = {
   'EN': messages_en
 };
 
-function App({selectedLanguage}) {
+const selectedLanguage = localStorage.getItem("selectedLanguage") || "EN"
+
+function App() {
   return (
     <IntlProvider locale='en' messages={messages[selectedLanguage]}>
       <Router>

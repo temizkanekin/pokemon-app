@@ -35,6 +35,7 @@ const PokemonDetailView = ({ history, match, capturePokemon, releasePokemon, upd
     React.useEffect(() => {
         isCapture ? axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
             .then(res => setPokemonDetail(res.data))
+            .catch(er => console.warn(er.message))
             :
             setPokemonDetail(pokemonsState.capturedPokemons.filter(pokemon => pokemon.name === pokemonName)[0])
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -21,10 +21,3 @@ export const updatePokemonDetail = (pokemon) => {
         payload: pokemon
     }
 }
-
-export const setSelectedLanguage = ( language ) => {
-    return {
-        type: 'SET_SELECTED_LANGUAGE',
-        payload: language
-    }
-}

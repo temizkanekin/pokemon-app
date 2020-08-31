@@ -1,8 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router-dom"
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import * as Actions from '../../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FormattedMessage } from 'react-intl';
@@ -10,8 +8,14 @@ import './Toolbar.css'
 
 const languages = ["EN", "TR"]
 
-const Toolbar = ({ history, pokemonsState, setSelectedLanguage, ...props }) => {
-    const { selectedLanguage } = pokemonsState
+const Toolbar = ({ history, pokemonsState, ...props }) => {
+    const selectedLanguage = localStorage.getItem("selectedLanguage") || "EN"
+
+    const handleLanguageSelection = (e) => {
+        localStorage.setItem("selectedLanguage", e.target.value)
+        history.go(0)
+    }
+    
     return (
         <div className="toolbar-root">
             <ul className="toolbar-content">
@@ -28,7 +32,7 @@ const Toolbar = ({ history, pokemonsState, setSelectedLanguage, ...props }) => {
                     <select
                         className="toolbar-select"
                         value={selectedLanguage}
-                        onChange={(e) => setSelectedLanguage(e.target.value)}
+                        onChange={handleLanguageSelection}
                         id="languages"
                     >
                         {
@@ -49,13 +53,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return bindActionCreators({
-        setSelectedLanguage: Actions.setSelectedLanguage
-    }, dispatch)
-}
-
 export default withRouter(connect(
     mapStateToProps,
-    mapDispatchToProps
+    undefined
 )(Toolbar));

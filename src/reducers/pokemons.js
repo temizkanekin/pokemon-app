@@ -1,19 +1,18 @@
 const initialState = {
-    selectedLanguage: "EN",
     capturedPokemons:[]
 }
 
 const pokemonsState = (state=initialState, action) => {
     switch(action.type) {
         case 'CAPTURE_POKEMON':
-            state.capturedPokemons.push(action.payload)
             return {
+                capturedPokemons : state.capturedPokemons.push(action.payload),
                 ...state
             }
         case 'RELEASE_POKEMON':
-            state.capturedPokemons.splice(state.capturedPokemons.indexOf(action.payload),1)
             return {
-                ...state
+                capturedPokemons : state.capturedPokemons.splice(state.capturedPokemons.indexOf(action.payload),1),
+                ...state,
             }
         case 'UPDATE_POKEMON_DETAIL':
             let updatedCapturedPokemons = state.capturedPokemons
@@ -24,11 +23,6 @@ const pokemonsState = (state=initialState, action) => {
             return {
                 ...state,
                 capturedPokemons: updatedCapturedPokemons
-            }
-        case 'SET_SELECTED_LANGUAGE':
-            return {
-                ...state,
-                selectedLanguage: action.payload
             }
         default:
             return state
