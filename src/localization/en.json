@@ -21,5 +21,6 @@
     "pokemon.add.to.favorites" : "Add Pokemon To Favorites",
     "pokemon.added.to.favorites" : "Pokemon Added To Favorites",
     "pokemon.removed.from.favorites" : "Pokemon Removed From Favorites",
-    "snackbar.pokemon.already.captured" : "Pokemon Already Captured"
+    "snackbar.pokemon.already.captured" : "Pokemon Already Captured",
+    "search" : "Search"
 }

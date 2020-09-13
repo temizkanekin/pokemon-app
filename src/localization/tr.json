@@ -21,6 +21,7 @@
     "pokemon.add.to.favorites" : "Pokemonu Favorilere Ekle",
     "pokemon.added.to.favorites" : "Pokemon Favorilere Eklendi",
     "pokemon.removed.from.favorites" : "Pokemon Favorilerden Çıkarıldı",
-    "snackbar.pokemon.already.captured" : "Pokemon Zaten Yakalanmış"
+    "snackbar.pokemon.already.captured" : "Pokemon Zaten Yakalanmış",
+    "search" : "Arama"
 
 }

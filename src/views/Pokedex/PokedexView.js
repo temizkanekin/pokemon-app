@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import Card from '../../components/Card/Card'
+import SearchBar from '../../components/SearchBar/SearchBar'
 import './PokedexView.css'
 import { withRouter } from "react-router-dom"
 import { bindActionCreators } from 'redux';
@@ -23,6 +24,7 @@ const PokedexView = ({ history, intl }) => {
     const [pokemons, setPokemons] = React.useState([])
     const [sortBy, setSortBy] = React.useState("")
     const [offset, setOffset] = React.useState(0)
+    const [searchedText, setSearchedText] = React.useState("")
 
     function usePrevious(value) {
         const ref = React.useRef();
@@ -32,15 +34,15 @@ const PokedexView = ({ history, intl }) => {
         return ref.current;
     }
 
-    const prevCount = usePrevious(offset)
+    const prevOffset = usePrevious(offset)
 
     React.useEffect(() => {
-        if (offset !== prevCount) {
+        if (offset !== prevOffset) {
             axios.get(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${offset}`)
                 .then(res => setPokemons([...pokemons, ...res.data.results]))
                 .catch(er => console.warn(er.message))
         }
-    }, [offset, prevCount, pokemons])
+    }, [offset, prevOffset, pokemons])
 
     const handleScroll = (e) => {
         let element = e.target
@@ -79,7 +81,7 @@ const PokedexView = ({ history, intl }) => {
                     <FontAwesomeIcon className={`mr-2`} icon={faSyncAlt} />
                     <FormattedMessage id="surprise.me" />
                 </button>
-                <div className="pokedexview-button flex items-center justify-center">
+                <div className="pokedexview-button">
                     <FontAwesomeIcon className={`mr-2`} icon={faSort} />
                     <select disabled={!pokemons} value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="pokedexview-select" id="sortBy">
                         <option value="" disabled>{intl.formatMessage(localizations.sortResultsBy)}</option>
@@ -90,10 +92,18 @@ const PokedexView = ({ history, intl }) => {
                         <option value="id-"> {intl.formatMessage(localizations.sortByIdDescending)}</option>
                     </select>
                 </div>
+                <SearchBar
+                    disabled={!pokemons}
+                    searchedText={searchedText} 
+                    setSearchedText={setSearchedText}
+                />
             </div>
             {
-                pokemons.length > 0 ? handleSort(pokemons)
-                    .map((pokemon, i) => {
+                pokemons.length > 0 ? handleSort(
+                    searchedText.length > 0 ? 
+                        pokemons.filter(pokemon => pokemon.name.includes(searchedText)) : 
+                        pokemons
+                    ).map((pokemon, i) => {
                         const index = handleIndex(pokemon.url.match(/\d+/g)[1])
                         return <Card
                             key={index}

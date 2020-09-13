@@ -33,6 +33,7 @@ https://gallant-pike-59e84b.netlify.app/
 - Dockerizing the app
 - [react-virtualized](https://github.com/bvaughn/react-virtualized) to render pokemons efficiently
 - Dark Theme
+- Use styled components for buttons (set current button properties as primary button)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

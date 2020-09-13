@@ -19,4 +19,7 @@ export const localizations = defineMessages({
     sortByIdDescending: {
         id: "sort.by.id.descending",
     },
+    search: {
+        id: "search"
+    }
 });

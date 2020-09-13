@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../../components/Card/Card'
-import './CapturedPokemonsView.css'
+import SearchBar from '../../components/SearchBar/SearchBar'
 import { withRouter } from "react-router-dom"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { localizations } from '../../localization/DefineMessages'
+import './CapturedPokemonsView.css'
 
 const handleIndex = (number) => {
     if (number < 10)
@@ -20,6 +21,7 @@ const handleIndex = (number) => {
 
 const CapturedPokemonsView = ({ history, pokemonsState, intl }) => {
     const [sortBy, setSortBy] = React.useState("")
+    const [searchedText, setSearchedText] = React.useState("")
 
     const handleCardClick = (name, index) => (e) => {
         history.push(`/captured-pokemons/${name}/${index}`)
@@ -41,7 +43,7 @@ const CapturedPokemonsView = ({ history, pokemonsState, intl }) => {
     return (
         <div className="capturedpokemonsview-root">
             <div className="w-full flex justify-evenly p-4">
-                <div className="capturedpokemonsview-button flex items-center justify-center">
+                <div className="capturedpokemonsview-button">
                     <FontAwesomeIcon className={`mr-2`} icon={faSort} />
                     <select disabled={pokemonsState.capturedPokemons.length === 0} value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="capturedpokemonsview-select" id="sortBy">
                         <option value="" disabled>{intl.formatMessage(localizations.sortResultsBy)}</option>
@@ -52,11 +54,19 @@ const CapturedPokemonsView = ({ history, pokemonsState, intl }) => {
                         <option value="id-"> {intl.formatMessage(localizations.sortByIdDescending)}</option>
                     </select>
                 </div>
+                <SearchBar
+                    disabled={pokemonsState.capturedPokemons.length === 0}
+                    searchedText={searchedText} 
+                    setSearchedText={setSearchedText}
+                />
             </div>
             <div className="captured-content">
                 {
-                    pokemonsState.capturedPokemons.length > 0 ? handleSort(pokemonsState.capturedPokemons)
-                        .sort((a, b) => b.pinned - a.pinned)
+                    pokemonsState.capturedPokemons.length > 0 ? handleSort(
+                        searchedText.length > 0 ? 
+                            pokemonsState.capturedPokemons.filter(pokemon => pokemon.name.includes(searchedText)) : 
+                            pokemonsState.capturedPokemons
+                        ).sort((a, b) => b.pinned - a.pinned)
                         .map(pokemon => {
                             const index = handleIndex(pokemon.id)
                             return <Card
