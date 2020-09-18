@@ -57,14 +57,14 @@ const CapturedPokemonsView = ({ history, pokemonsState, intl }) => {
                 <SearchBar
                     disabled={pokemonsState.capturedPokemons.length === 0}
                     searchedText={searchedText} 
-                    setSearchedText={setSearchedText}
+                    onChange={setSearchedText}
                 />
             </div>
             <div className="captured-content">
                 {
                     pokemonsState.capturedPokemons.length > 0 ? handleSort(
                         searchedText.length > 0 ? 
-                            pokemonsState.capturedPokemons.filter(pokemon => pokemon.name.includes(searchedText)) : 
+                            pokemonsState.capturedPokemons.filter(pokemon => pokemon.name.includes(searchedText.toLowerCase())) : 
                             pokemonsState.capturedPokemons
                         ).sort((a, b) => b.pinned - a.pinned)
                         .map(pokemon => {

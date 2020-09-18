@@ -95,13 +95,13 @@ const PokedexView = ({ history, intl }) => {
                 <SearchBar
                     disabled={!pokemons}
                     searchedText={searchedText} 
-                    setSearchedText={setSearchedText}
+                    onChange={setSearchedText}
                 />
             </div>
             {
                 pokemons.length > 0 ? handleSort(
                     searchedText.length > 0 ? 
-                        pokemons.filter(pokemon => pokemon.name.includes(searchedText)) : 
+                        pokemons.filter(pokemon => pokemon.name.includes(searchedText.toLowerCase())) : 
                         pokemons
                     ).map((pokemon, i) => {
                         const index = handleIndex(pokemon.url.match(/\d+/g)[1])

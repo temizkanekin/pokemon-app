@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl';
 import { localizations } from '../../localization/DefineMessages'
 
 import './SearchBar.css'
-const SearchBar = ({searchedText,setSearchedText, className, disabled, intl}) => {
+const SearchBar = ({searchedText,onChange, className, disabled, intl}) => {
     //todo expand search bar via search icon click (with transition)
     return (
         <input
@@ -13,7 +13,7 @@ const SearchBar = ({searchedText,setSearchedText, className, disabled, intl}) =>
             id="search-input"
             name="search-input"
             value={searchedText}
-            onChange={(e) => setSearchedText(e.target.value)}
+            onChange={(e) => onChange(e.target.value)}
             placeholder={intl.formatMessage(localizations.search)}
         />
     )
